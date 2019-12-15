@@ -1,0 +1,65 @@
+//plugins {
+//	id 'org.springframework.boot' version '2.2.2.RELEASE'
+//	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+//	id 'java'
+//}
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.2.RELEASE")
+		classpath 'io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE'
+	}
+}
+
+allprojects {
+
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'java-library'
+
+	group = 'com.romanov'
+	version = '0.0.1-SNAPSHOT'
+
+	compileJava {
+		sourceCompatibility = 1.8
+		targetCompatibility = 1.8
+	}
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom("org.springframework.boot:spring-boot-dependencies:2.2.2.RELEASE")
+		}
+	}
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		
+		compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+		
+		testImplementation('org.springframework.boot:spring-boot-starter-test') {
+			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		}
+	}
+
+	test {
+		useJUnitPlatform()
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+
