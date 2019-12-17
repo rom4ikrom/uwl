@@ -1,7 +1,5 @@
 group 'com.romanov'
-version '0.0.1'
-
-apply plugin: 'org.springframework.boot'
+version '0.1'
 
 buildscript {
     repositories {
@@ -13,7 +11,10 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
 
-repositories {
-    mavenCentral()
+jar {
+    baseName = 'core'
+    enabled = true
+    version = '0.1'
 }

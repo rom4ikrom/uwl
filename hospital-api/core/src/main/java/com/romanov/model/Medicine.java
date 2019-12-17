@@ -2,9 +2,11 @@ package com.romanov.model;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
 import java.util.List;
 
 @Data
+//@Entity
 public class Medicine {
 
     private String id;
@@ -16,4 +18,6 @@ public class Medicine {
     private List<String> composition;
 
     private Double price;
+
+    private Medicine() {}
 }

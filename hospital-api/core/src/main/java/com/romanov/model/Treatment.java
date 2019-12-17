@@ -4,9 +4,11 @@ import com.romanov.model.staff.Consultant;
 import com.romanov.model.staff.Surgeon;
 import lombok.Data;
 
+import javax.persistence.Entity;
 import java.util.List;
 
 @Data
+//@Entity
 public class Treatment {
 
     private String id;
@@ -23,4 +25,11 @@ public class Treatment {
     private int duration;
 
     private TreatmentStatus status;
+
+    private Treatment() {}
+
+    public enum TreatmentStatus
+    {
+        ACTIVE, CANCELED, PENDING;
+    }
 }

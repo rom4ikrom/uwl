@@ -2,4 +2,5 @@ rootProject.name = 'hospital-api'
 include 'treatment'
 include 'appointment'
 include 'core'
+include 'patient'
 

@@ -1,7 +1,10 @@
 package com.romanov.model;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class Request {
 
     private String id;

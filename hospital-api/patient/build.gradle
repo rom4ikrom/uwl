@@ -20,7 +20,7 @@ dependencies {
 }
 
 jar {
-    baseName = 'treatment'
+    baseName = 'patient'
     enabled = true
     version = '0.1'
 }
