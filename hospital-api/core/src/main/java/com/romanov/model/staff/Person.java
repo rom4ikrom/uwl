@@ -1,17 +1,24 @@
 package com.romanov.model.staff;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-@MappedSuperclass
+@Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public abstract class Person implements  Serializable {
+public abstract class Person implements Serializable {
+
+    public static final String FIRST_NAME = "firstName";
+    public static final String LAST_NAME = "lastName";
+    public static final String AGE = "age";
+
+    public static final String EMAIL = "email";
+    public static final String PHONE = "phone";
+    public static final String PERSON_ROLE = "personRole";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,25 +32,27 @@ public abstract class Person implements  Serializable {
 
     private int age;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
-    private Address address;
-
+    @Column(name = "email", unique = true)
     private String email;
+
     private String phone;
 
     @Column(name = "person_role")
     private PersonRole personRole;
 
-    Person(String firstName, String lastName, int age, Address address, String email, String phone, PersonRole personRole)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
+    private List<Address> addresses = new ArrayList<>();
+
+    Person(String firstName, String lastName, int age, String email, String phone, PersonRole personRole, List<Address> addresses)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.address = address;
         this.email = email;
         this.phone = phone;
         this.personRole = personRole;
+        this.addresses = addresses;
     }
 
     Person() {}

@@ -1,0 +1,34 @@
+package com.romanov.config.exception;
+
+public enum ExceptionCode {
+
+    //GENERAL
+    UNKNOWN, MISSING_PARAM, INVALID_FIELD,
+
+    //NOT FOUND
+    PATIENT_NOT_FOUND,
+
+    //PERSON
+    INVALID_FIRST_NAME, INVALID_LAST_NAME, INVALID_AGE, INVALID_EMAIL, INVALID_PHONE, INVALID_PERSON_ROLE, INVALID_ADDRESS,
+
+    //ADDRESS
+    INVALID_FIRST_LINE, INVALID_SECOND_LINE, INVALID_POSTCODE, INVALID_TOWN, INVALID_COUNTRY;
+
+    public static ExceptionCode getByCode(String code) {
+
+        if(code == null) return ExceptionCode.UNKNOWN;
+
+        for(ExceptionCode thortfulExceptionCode : values()) {
+            if(code.equals(thortfulExceptionCode.getCode())) {
+                return thortfulExceptionCode;
+            }
+        }
+
+        return ExceptionCode.UNKNOWN;
+    }
+
+    public String getCode() {
+        return this.toString();
+    }
+
+}
