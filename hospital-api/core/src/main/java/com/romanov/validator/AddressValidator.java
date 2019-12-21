@@ -1,7 +1,7 @@
 package com.romanov.validator;
 
 import com.romanov.config.exception.ExceptionCode;
-import com.romanov.model.staff.Address;
+import com.romanov.model.utils.Address;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

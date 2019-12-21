@@ -5,13 +5,12 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE")
-    }
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+
+bootJar.enabled = false
 
 jar {
     baseName = 'core'

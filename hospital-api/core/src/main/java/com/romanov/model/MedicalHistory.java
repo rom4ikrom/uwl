@@ -1,9 +1,8 @@
 package com.romanov.model;
 
-import com.romanov.model.staff.Patient;
+import com.romanov.model.client.Patient;
 import lombok.Data;
 
-import javax.persistence.Entity;
 import java.util.List;
 
 @Data
@@ -16,5 +15,5 @@ public class MedicalHistory {
 
     private List<MedicalRecord> medicalRecords;
 
-    private MedicalHistory() {};
+    private MedicalHistory() {}
 }

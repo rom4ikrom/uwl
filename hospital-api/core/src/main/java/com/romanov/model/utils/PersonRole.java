@@ -1,11 +1,11 @@
-package com.romanov.model.staff;
+package com.romanov.model.utils;
 
 import java.util.Arrays;
 import java.util.List;
 
 public enum PersonRole {
 
-    PATIENT, PRACTITIONER, SURGEON, CONSULTANT;
+    PRACTITIONER, SURGEON, CONSULTANT;
 
     public static List<PersonRole> getValidValues()
     {

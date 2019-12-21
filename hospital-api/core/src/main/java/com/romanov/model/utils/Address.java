@@ -1,6 +1,7 @@
-package com.romanov.model.staff;
+package com.romanov.model.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.romanov.model.utils.Person;
 import lombok.Data;
 
 import javax.persistence.*;

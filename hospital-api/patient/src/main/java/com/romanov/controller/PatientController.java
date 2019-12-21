@@ -1,9 +1,8 @@
 package com.romanov.controller;
 
-import com.romanov.config.exception.BadParameterException;
 import com.romanov.config.exception.ExceptionCode;
 import com.romanov.config.exception.NotFoundException;
-import com.romanov.model.staff.Patient;
+import com.romanov.model.client.Patient;
 import com.romanov.service.PatientService;
 import com.romanov.validator.PatientValidator;
 import org.springframework.beans.factory.annotation.Autowired;

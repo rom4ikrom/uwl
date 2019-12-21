@@ -1,4 +1,4 @@
-package com.romanov.model.staff;
+package com.romanov.model.utils;
 
 import lombok.Data;
 
@@ -37,24 +37,20 @@ public abstract class Person implements Serializable {
 
     private String phone;
 
-    @Column(name = "person_role")
-    private PersonRole personRole;
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private List<Address> addresses = new ArrayList<>();
 
-    Person(String firstName, String lastName, int age, String email, String phone, PersonRole personRole, List<Address> addresses)
+    public Person(String firstName, String lastName, int age, String email, String phone, List<Address> addresses)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
         this.phone = phone;
-        this.personRole = personRole;
         this.addresses = addresses;
     }
 
-    Person() {}
+    public Person() {}
 
 }

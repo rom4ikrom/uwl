@@ -1,18 +1,19 @@
 package com.romanov.model.staff;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.romanov.model.utils.Address;
+import com.romanov.model.utils.PersonRole;
 
-//@Entity
-//@Table(name = "hospital_staff")
-public class Consultant extends Person {
+import java.util.List;
 
-//    public Consultant(String firstName, String lastName, int age, Address address, String email, String phone, PersonRole personRole) {
-//        super(firstName, lastName, age, address, email, phone, personRole);
-//    }
-//
-//    private Consultant() {
-//        super();
-//    }
+public class Consultant extends Member {
+
+    public Consultant(String firstName, String lastName, int age, String email, String phone, List<Address> addresses, PersonRole personRole)
+    {
+        super(firstName, lastName, age, email, phone, addresses, personRole);
+    }
+
+    private Consultant() {
+        super();
+    }
 
 }

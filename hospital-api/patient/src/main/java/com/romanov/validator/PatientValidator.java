@@ -1,9 +1,6 @@
 package com.romanov.validator;
 
-import com.romanov.config.exception.ExceptionCode;
-import com.romanov.model.staff.Patient;
-import com.romanov.model.staff.Person;
-import com.romanov.model.staff.PersonRole;
+import com.romanov.model.client.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -24,15 +21,15 @@ public class PatientValidator extends PersonValidator {
 
         personValidator.validate(target, errors);
 
-        Patient patient = (Patient) target;
-
-        if(!PersonRole.PATIENT.equals(patient.getPersonRole()))
-        {
-            errors.reject(
-                    ExceptionCode.INVALID_PERSON_ROLE.getCode(),
-                    "Invalid patient object, person role should be PATIENT!"
-            );
-        }
+//        Patient patient = (Patient) target;
+//
+//        if(!PersonRole.PATIENT.equals(patient.getPersonRole()))
+//        {
+//            errors.reject(
+//                    ExceptionCode.INVALID_PERSON_ROLE.getCode(),
+//                    "Invalid patient object, person role should be PATIENT!"
+//            );
+//        }
 
 
     }

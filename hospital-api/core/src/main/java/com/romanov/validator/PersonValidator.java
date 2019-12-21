@@ -1,7 +1,8 @@
 package com.romanov.validator;
 
 import com.romanov.config.exception.ExceptionCode;
-import com.romanov.model.staff.Person;
+import com.romanov.model.utils.Address;
+import com.romanov.model.utils.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -57,12 +58,12 @@ public class PersonValidator implements Validator {
                 "Invalid person object, first name can't be empty!"
         );
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(
-                errors,
-                Person.PERSON_ROLE,
-                ExceptionCode.INVALID_PERSON_ROLE.getCode(),
-                "Invalid person object, person role can't be empty!"
-        );
+//        ValidationUtils.rejectIfEmptyOrWhitespace(
+//                errors,
+//                Person.PERSON_ROLE,
+//                ExceptionCode.INVALID_PERSON_ROLE.getCode(),
+//                "Invalid person object, person role can't be empty!"
+//        );
 
         Person person = (Person) target;
 
@@ -74,16 +75,22 @@ public class PersonValidator implements Validator {
             );
         }
 
-//        if(person.getAddress() == null)
-//        {
-//            errors.reject(
-//                    ExceptionCode.INVALID_ADDRESS.getCode(),
-//                    "Invalid person object, address can't be less than 16!"
-//            );
-//        } else {
-//            errors.pushNestedPath("address");
-//            ValidationUtils.invokeValidator(addressValidator, person.getAddress(), errors);
-//            errors.popNestedPath();
-//        }
+        if(person.getAddresses() == null || person.getAddresses().isEmpty())
+        {
+            errors.reject(
+                    ExceptionCode.INVALID_ADDRESS.getCode(),
+                    "Invalid person object, address can't be less than 16!"
+            );
+        } else {
+
+            int index = 0;
+            for(Address address : person.getAddresses())
+            {
+                errors.pushNestedPath("addresses[" + index + "]");
+                ValidationUtils.invokeValidator(addressValidator, address, errors);
+                errors.popNestedPath();
+                index++;
+            }
+        }
     }
 }
