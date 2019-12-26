@@ -28,6 +28,8 @@ public class MedicalRecord implements Serializable {
 
     private String description;
 
+    private MedicalRecordStatus status;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "practitioner_id")
     @JsonIgnore

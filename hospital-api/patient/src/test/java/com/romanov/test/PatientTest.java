@@ -4,7 +4,7 @@ import com.romanov.controller.AdminPatientController;
 import com.romanov.model.client.Patient;
 import com.romanov.model.utils.Address;
 import com.romanov.repository.main.PatientRepository;
-import com.romanov.service.PatientService;
+import com.romanov.service.AdminPatientService;
 import com.romanov.util.Funcs;
 import com.romanov.validator.PatientValidator;
 import org.junit.jupiter.api.Assertions;
@@ -53,7 +53,7 @@ public class PatientTest {
     private MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter;
 
     private AdminPatientController adminPatientController;
-    private PatientService patientService;
+    private AdminPatientService adminPatientService;
 
     private MockMvc mockmvc;
 
@@ -70,8 +70,8 @@ public class PatientTest {
     {
         patientValid = new Patient("firstName", "lastName", 16, "email@gmail.com", "1234567890");
 
-        patientService = new PatientService(mockPatientRepository);
-        adminPatientController = new AdminPatientController(patientService, patientValidator);
+        adminPatientService = new AdminPatientService(mockPatientRepository);
+        adminPatientController = new AdminPatientController(adminPatientService, patientValidator);
         mockmvc = standaloneSetup(adminPatientController).setMessageConverters(mappingJackson2HttpMessageConverter).setValidator(patientValidator).build();
     }
 

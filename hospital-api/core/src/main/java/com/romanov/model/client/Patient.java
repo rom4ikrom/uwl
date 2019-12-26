@@ -1,9 +1,8 @@
 package com.romanov.model.client;
 
-import com.romanov.model.Request;
+import com.romanov.model.request.Request;
 import com.romanov.model.record.MedicalHistory;
 import com.romanov.model.treatment.Treatment;
-import com.romanov.model.utils.Address;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -39,5 +38,17 @@ public class Patient extends Client {
     private Patient()
     {
         super();
+    }
+
+    public void addRequest(Request request)
+    {
+        this.requests.add(request);
+        request.setOwner(this);
+    }
+
+    public void removeRequest(Request request)
+    {
+        this.requests.remove(request);
+        request.setOwner(null);
     }
 }

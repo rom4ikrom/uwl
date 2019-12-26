@@ -1,4 +1,4 @@
-package com.romanov.model;
+package com.romanov.model.request;
 
 public enum RequestType {
 

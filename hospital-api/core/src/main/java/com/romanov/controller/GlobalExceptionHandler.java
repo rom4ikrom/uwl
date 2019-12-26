@@ -81,6 +81,15 @@ public class GlobalExceptionHandler {
         return new ExceptionMessage(ex, HttpStatus.NOT_FOUND, req.getRequestURI(), exp.getExceptionCode());
     }
 
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler({UnprocessableException.class})
+    @ResponseBody
+    public ExceptionMessage handleUnprocessableException (HttpServletRequest req, Exception ex) {
+        log.info(GLOBAL_LOG_HEADER, ex);
+        UnprocessableException uExp = (UnprocessableException)ex;
+        return new ExceptionMessage(uExp, HttpStatus.UNPROCESSABLE_ENTITY, req.getRequestURI(), uExp.getExceptionCode());
+    }
+
     private ExceptionBindInfo handleFieldError(ObjectError objectError)
     {
         String message = objectError.getDefaultMessage();

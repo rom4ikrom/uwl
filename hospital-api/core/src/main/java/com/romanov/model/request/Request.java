@@ -1,4 +1,4 @@
-package com.romanov.model;
+package com.romanov.model.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.romanov.model.client.Patient;
@@ -33,6 +33,25 @@ public class Request {
     @JsonIgnore
     private Practitioner manager;
 
+    @OneToOne(mappedBy = "request")
+    @JsonIgnore
+    private BaseHospitalService baseHospitalService;
+
     private Request() {};
+
+    public boolean isTreatment()
+    {
+        return RequestType.TREATMENT.equals(this.requestType);
+    }
+
+    public boolean isAppointment()
+    {
+        return RequestType.APPOINTMENT.equals(this.requestType);
+    }
+
+    public boolean isAnalysis()
+    {
+        return RequestType.ANALYSIS.equals(this.requestType);
+    }
 
 }

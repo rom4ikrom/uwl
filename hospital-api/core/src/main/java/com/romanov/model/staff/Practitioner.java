@@ -1,9 +1,8 @@
 package com.romanov.model.staff;
 
-import com.romanov.model.Request;
+import com.romanov.model.request.Request;
 import com.romanov.model.record.MedicalRecord;
 import com.romanov.model.treatment.Treatment;
-import com.romanov.model.utils.Address;
 import com.romanov.model.utils.PersonRole;
 
 import javax.persistence.*;
@@ -30,6 +29,42 @@ public class Practitioner extends Member {
 
     private Practitioner() {
         super();
+    }
+
+    public void addMedicalRecord(MedicalRecord medicalRecord)
+    {
+        this.medicalRecords.add(medicalRecord);
+        medicalRecord.setPractitioner(this);
+    }
+
+    public void removeMedicalRecord(MedicalRecord medicalRecord)
+    {
+        this.medicalRecords.remove(medicalRecord);
+        medicalRecord.setPractitioner(null);
+    }
+
+    public void addTreatment(Treatment treatment)
+    {
+        this.treatments.add(treatment);
+        treatment.setMaker(this);
+    }
+
+    public void removeTreatment(Treatment treatment)
+    {
+        this.treatments.remove(treatment);
+        treatment.setMaker(null);
+    }
+
+    public void addRequest(Request request)
+    {
+        this.requests.add(request);
+        request.setManager(this);
+    }
+
+    public void removeRequest(Request request)
+    {
+        this.requests.remove(request);
+        request.setManager(null);
     }
 
 }

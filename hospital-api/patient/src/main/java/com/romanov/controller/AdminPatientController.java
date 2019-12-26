@@ -3,7 +3,7 @@ package com.romanov.controller;
 import com.romanov.config.exception.ExceptionCode;
 import com.romanov.config.exception.NotFoundException;
 import com.romanov.model.client.Patient;
-import com.romanov.service.PatientService;
+import com.romanov.service.AdminPatientService;
 import com.romanov.validator.PatientValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RequestMapping("/admin/patient")
 public class AdminPatientController {
 
-    private PatientService patientService;
+    private AdminPatientService adminPatientService;
     private PatientValidator patientValidator;
 
     @InitBinder("patient")
@@ -25,35 +25,35 @@ public class AdminPatientController {
     }
 
     @Autowired
-    public AdminPatientController(PatientService patientService, PatientValidator patientValidator)
+    public AdminPatientController(AdminPatientService adminPatientService, PatientValidator patientValidator)
     {
-        this.patientService = patientService;
+        this.adminPatientService = adminPatientService;
         this.patientValidator = patientValidator;
     }
 
     @PostMapping(consumes = "application/json")
     public Patient savePatient(@Valid @RequestBody Patient patient)
     {
-        return patientService.savePatient(patient);
+        return adminPatientService.savePatient(patient);
     }
 
     @PutMapping(value = "/{patient-id}", consumes = "application/json")
     public Patient updatePatient(@PathVariable("patient-id") long id, @Valid @RequestBody Patient updatedPatient) throws NotFoundException
     {
-        Patient oldPatient = patientService.getPatient(id);
+        Patient oldPatient = adminPatientService.getPatient(id);
 
         if(oldPatient == null)
         {
             throw new NotFoundException(ExceptionCode.PATIENT_NOT_FOUND, "patient not found!");
         }
 
-        return patientService.updatePatient(oldPatient, updatedPatient);
+        return adminPatientService.updatePatient(oldPatient, updatedPatient);
     }
 
     @GetMapping(value = "/{patient-id}")
     public Patient getPatient(@PathVariable("patient-id") long id) throws NotFoundException
     {
-        Patient patient = patientService.getPatient(id);
+        Patient patient = adminPatientService.getPatient(id);
 
         if(patient == null)
         {
@@ -66,13 +66,13 @@ public class AdminPatientController {
     @DeleteMapping(value = "/{patient-id}")
     public void deletePatient(@PathVariable("patient-id") long id) throws NotFoundException
     {
-        Patient patient = patientService.getPatient(id);
+        Patient patient = adminPatientService.getPatient(id);
 
         if(patient == null)
         {
             throw new NotFoundException(ExceptionCode.PATIENT_NOT_FOUND, "patient not found!");
         }
 
-        patientService.deletePatient(patient);
+        adminPatientService.deletePatient(patient);
     }
 }

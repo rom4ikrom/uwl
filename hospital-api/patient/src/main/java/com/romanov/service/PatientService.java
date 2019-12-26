@@ -1,12 +1,12 @@
 package com.romanov.service;
 
 import com.romanov.model.client.Patient;
-import com.romanov.model.utils.Address;
+import com.romanov.model.request.Request;
 import com.romanov.repository.main.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,28 +20,13 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
-    public Patient savePatient(Patient patient)
+    public List<Request> createRequest(Patient patient, Request request)
     {
-        Patient persistPatient = new Patient(patient);
-        persistPatient.addAddresses(patient.getAddresses());
-        return patientRepository.save(persistPatient);
+        patient.addRequest(request);
+        request.setDate(new Date());
+
+        return patientRepository.save(patient).getRequests();
     }
 
-    public Patient updatePatient(Patient oldPatient, Patient updatedPatient)
-    {
-        long id = oldPatient.getId();
-        updatedPatient.setId(id);
-        return patientRepository.save(updatedPatient);
-    }
-
-    public Patient getPatient(long id)
-    {
-        return patientRepository.findById(id).orElse(null);
-    }
-
-    public void deletePatient(Patient patient)
-    {
-        patientRepository.delete(patient);
-    }
 
 }
