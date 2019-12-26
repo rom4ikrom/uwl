@@ -1,5 +1,6 @@
 package com.romanov.model.client;
 
+import com.romanov.model.Request;
 import com.romanov.model.record.MedicalHistory;
 import com.romanov.model.treatment.Treatment;
 import com.romanov.model.utils.Address;
@@ -21,6 +22,9 @@ public class Patient extends Client {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "treatment_id")
     private Treatment treatment;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Request> requests = new ArrayList<>();
 
     public Patient(String firstName, String lastName, int age,  String email, String phone) {
         super(firstName, lastName, age, email, phone);

@@ -1,5 +1,6 @@
 package com.romanov.model.staff;
 
+import com.romanov.model.Request;
 import com.romanov.model.record.MedicalRecord;
 import com.romanov.model.treatment.Treatment;
 import com.romanov.model.utils.Address;
@@ -18,6 +19,9 @@ public class Practitioner extends Member {
 
     @OneToMany(mappedBy = "maker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Treatment> treatments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Request> requests = new ArrayList<>();
 
     public Practitioner(String firstName, String lastName, int age, String email, String phone, PersonRole personRole)
     {
