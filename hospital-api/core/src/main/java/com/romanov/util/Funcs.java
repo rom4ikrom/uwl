@@ -1,5 +1,10 @@
 package com.romanov.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +20,17 @@ public class Funcs {
         m.appendTail(sb);
 
         return sb.toString();
+    }
+
+    public static <T> String objectToJson(T object) throws IOException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+
+        ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
+
+        return objectWriter.writeValueAsString(object);
     }
 
 }

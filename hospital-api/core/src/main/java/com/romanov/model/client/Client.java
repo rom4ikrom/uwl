@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Client extends Person {
 
-    Client(String firstName, String lastName, int age, String email, String phone, List<Address> addresses) {
-        super(firstName, lastName, age, email, phone, addresses);
+    Client(String firstName, String lastName, int age, String email, String phone) {
+        super(firstName, lastName, age, email, phone);
     }
 
     Client()

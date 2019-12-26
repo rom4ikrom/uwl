@@ -32,7 +32,8 @@ public class Address {
     private String postcode;
     private String country;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
     @JsonIgnore
     private Person person;
 
@@ -46,4 +47,9 @@ public class Address {
     }
 
     Address() {}
+
+    public void setPostcode(String postcode)
+    {
+        this.postcode = postcode.replaceAll(" ", "").toUpperCase();
+    }
 }

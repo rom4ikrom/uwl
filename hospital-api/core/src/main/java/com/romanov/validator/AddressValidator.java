@@ -53,5 +53,17 @@ public class AddressValidator implements Validator {
                 "Invalid address object, country can't be empty!"
         );
 
+        Address address = (Address) target;
+
+        String postcode = address.getPostcode();
+
+        if(postcode != null && (postcode.length() < 6 || postcode.length() > 8))
+        {
+            errors.reject(
+                    ExceptionCode.INVALID_POSTCODE.getCode(),
+                    "Invalid address object, postcode should be between 6 and 8 letters!"
+            );
+        }
+
     }
 }

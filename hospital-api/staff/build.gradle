@@ -15,17 +15,17 @@ apply plugin: 'java'
 
 dependencies {
     compile project (':core')
-    
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 jar {
-    baseName = 'appointment'
+    baseName = 'staff'
     enabled = true
     version = '0.1'
 }
 
 bootRun {
     jvmArgs = ["-Xmx256m"]
-    //systemProperties = System.properties
+    systemProperties = System.properties
 }

@@ -75,11 +75,19 @@ public class PersonValidator implements Validator {
             );
         }
 
+        if(person.getPhone() != null && (person.getPhone().length() < 10 || person.getPhone().length() > 12))
+        {
+            errors.reject(
+                    ExceptionCode.INVALID_PHONE.getCode(),
+                    "Invalid person object, phone number should be between 10 and 12 numbers!"
+            );
+        }
+
         if(person.getAddresses() == null || person.getAddresses().isEmpty())
         {
             errors.reject(
                     ExceptionCode.INVALID_ADDRESS.getCode(),
-                    "Invalid person object, address can't be less than 16!"
+                    "Invalid person object, address can't be empty!"
             );
         } else {
 

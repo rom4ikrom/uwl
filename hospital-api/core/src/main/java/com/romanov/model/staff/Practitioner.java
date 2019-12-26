@@ -1,15 +1,27 @@
 package com.romanov.model.staff;
 
+import com.romanov.model.record.MedicalRecord;
+import com.romanov.model.treatment.Treatment;
 import com.romanov.model.utils.Address;
 import com.romanov.model.utils.PersonRole;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "practitioner")
 public class Practitioner extends Member {
 
-    public Practitioner(String firstName, String lastName, int age, String email, String phone, List<Address> addresses, PersonRole personRole)
+    @OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<MedicalRecord> medicalRecords = new ArrayList<>();
+
+    @OneToMany(mappedBy = "maker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Treatment> treatments = new ArrayList<>();
+
+    public Practitioner(String firstName, String lastName, int age, String email, String phone, PersonRole personRole)
     {
-        super(firstName, lastName, age, email, phone, addresses,  personRole);
+        super(firstName, lastName, age, email, phone, personRole);
     }
 
     private Practitioner() {

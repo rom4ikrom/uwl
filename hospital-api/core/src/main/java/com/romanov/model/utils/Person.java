@@ -37,20 +37,36 @@ public abstract class Person implements Serializable {
 
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addresses = new ArrayList<>();
 
-    public Person(String firstName, String lastName, int age, String email, String phone, List<Address> addresses)
+    public Person(String firstName, String lastName, int age, String email, String phone)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
         this.phone = phone;
-        this.addresses = addresses;
     }
 
     public Person() {}
+
+    public void addAddress(Address address)
+    {
+        this.addresses.add(address);
+        address.setPerson(this);
+    }
+
+    public void addAddresses(List<Address> addresses)
+    {
+        this.addresses.addAll(addresses);
+        addresses.forEach(x -> x.setPerson(this));
+    }
+
+    public void removeAddress(Address address)
+    {
+        this.addresses.remove(address);
+        address.setPerson(null);
+    }
 
 }
