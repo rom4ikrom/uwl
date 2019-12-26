@@ -23,6 +23,9 @@ public class Request {
     @Column(name = "request_type")
     private RequestType requestType;
 
+    @Column(name = "request_status")
+    private RequestStatus requestStatus;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     @JsonIgnore

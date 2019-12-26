@@ -7,14 +7,15 @@ import com.romanov.model.client.Patient;
 import com.romanov.model.staff.Consultant;
 import com.romanov.model.staff.Practitioner;
 import com.romanov.model.staff.Surgeon;
+import com.romanov.util.Funcs;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -41,7 +42,11 @@ public class Treatment {
 
     private Double totalPrice;
 
-    private int duration;
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "maker_id")
@@ -57,8 +62,9 @@ public class Treatment {
 
     private Treatment() {}
 
-    public Treatment(int duration) {
-        this.duration = duration;
+    public Treatment(Date startDate, Date endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.status = TreatmentStatus.ACTIVE;
     }
 
@@ -74,8 +80,9 @@ public class Treatment {
 
     private Double getServicePrice()
     {
-        Double serviceSurgeonPrice = (double) (this.duration * this.surgeons.size() * 12);
-        Double serviceConsultantPrice = (double) (this.duration * this.consultants.size() * 9);
+        long duration = Funcs.dateDiff(this.startDate, this.endDate);
+        Double serviceSurgeonPrice = (double) (duration * this.surgeons.size() * 12);
+        Double serviceConsultantPrice = (double) (duration * this.consultants.size() * 9);
 
         return serviceSurgeonPrice + serviceConsultantPrice;
     }
