@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.romanov.config.exception.ExceptionCode;
 import com.romanov.config.exception.UnprocessableException;
 import com.romanov.model.client.Patient;
+import com.romanov.model.record.MedicalRecord;
 import com.romanov.model.staff.Consultant;
 import com.romanov.model.staff.Practitioner;
 import com.romanov.model.staff.Surgeon;
@@ -39,6 +40,8 @@ public class Treatment {
     @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Medicine> medicines = new ArrayList<>();
+
+    private String recommendations;
 
     private Double totalPrice;
 
@@ -91,6 +94,14 @@ public class Treatment {
     {
         this.medicines.add(medicine);
         medicine.setTreatment(this);
+    }
+
+    public void addMedicines(List<Medicine> medicines)
+    {
+        for(Medicine medicine : medicines)
+        {
+            addMedicine(medicine);
+        }
     }
 
     public void removeMedicine(Medicine medicine) throws UnprocessableException

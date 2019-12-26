@@ -1,8 +1,5 @@
 rootProject.name = 'hospital-api'
-include 'treatment'     //9099
-include 'request'       //9098
 include 'core'
-include 'patient'       //9097
-include 'history'       //9096
-include 'staff'         //9095
+include 'patient'       //9098
+include 'staff'         //9099
 

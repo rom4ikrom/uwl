@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7fadc538-e02b-4681-b0d2-839e0e71f7e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/feign/PatientFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileChanges/last-build.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/romanov/EurekaApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/libs/hospital-eureka-0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/resources/main/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/bootJar/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/romanov/EurekaApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/core/src/main/java/com/romanov/config/exception/ExceptionCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/core/src/main/java/com/romanov/config/exception/ExceptionCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/core/src/main/java/com/romanov/model/record/MedicalHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/core/src/main/java/com/romanov/model/record/MedicalHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/core/src/main/java/com/romanov/model/record/MedicalRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/core/src/main/java/com/romanov/model/record/MedicalRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/core/src/main/java/com/romanov/model/treatment/Treatment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/core/src/main/java/com/romanov/model/treatment/Treatment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/patient/src/main/java/com/romanov/PatientApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/patient/src/main/java/com/romanov/PatientApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/patient/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/patient/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/StaffApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/StaffApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/controller/ProcessingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/controller/ProcessingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/service/ProcessingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/service/ProcessingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/service/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/service/StaffService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/service/TreatmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/staff/src/main/java/com/romanov/service/TreatmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hospital-api/staff/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../hospital-api/staff/src/main/resources/application.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1VXNyERHRMk4gUG3YoZGwBAGpLT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7fadc538-e02b-4681-b0d2-839e0e71f7e7" name="Default Changelist" comment="" />
+      <created>1577395731408</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577395731408</updated>
+    </task>
+    <servers />
+  </component>
+</project>

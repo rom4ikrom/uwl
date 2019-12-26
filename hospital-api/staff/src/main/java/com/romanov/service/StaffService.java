@@ -9,6 +9,8 @@ import com.romanov.repository.main.SurgeonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StaffService {
 
@@ -31,6 +33,11 @@ public class StaffService {
         return practitionerRepository.save(practitioner);
     }
 
+    public Practitioner getPractitioner(long practitionerId)
+    {
+        return practitionerRepository.findById(practitionerId).orElse(null);
+    }
+
     public Surgeon saveSurgeon(Surgeon surgeon)
     {
         return surgeonRepository.save(surgeon);
@@ -39,6 +46,16 @@ public class StaffService {
     public Consultant saveConsultant(Consultant consultant)
     {
         return consultantRepository.save(consultant);
+    }
+
+    public List<Surgeon> getSurgeons()
+    {
+        return surgeonRepository.findAll();
+    }
+
+    public List<Consultant> getConsultants()
+    {
+        return consultantRepository.findAll();
     }
 
 }

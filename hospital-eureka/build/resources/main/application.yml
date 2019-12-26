@@ -1,0 +1,9 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    health-check-url-path: /actuator/health
+  client:
+    registerWithEureka: true
+    fetchRegistry: true

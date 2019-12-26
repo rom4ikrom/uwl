@@ -41,4 +41,9 @@ public class MedicalRecord implements Serializable {
     private MedicalHistory medicalHistory;
 
     private MedicalRecord() {};
+
+    public MedicalRecord(MedicalRecordStatus status)
+    {
+        this.status = status;
+    }
 }
