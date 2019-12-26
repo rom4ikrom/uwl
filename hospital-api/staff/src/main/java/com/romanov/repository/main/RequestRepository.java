@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RequestRepository extends JpaRepository<Request, Long> {
 
-    @Query("SELECT r FROM request r WHERE r.request_status = ?1")
+    @Query("SELECT r FROM Request r WHERE r.requestStatus = ?1")
     List<Request> findRequestsByStatus(RequestStatus status);
 
 }
