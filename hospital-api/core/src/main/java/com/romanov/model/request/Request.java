@@ -48,16 +48,19 @@ public class Request {
 
     Request() {};
 
+    @JsonIgnore
     public boolean isTreatment()
     {
         return RequestType.TREATMENT.equals(this.requestType);
     }
 
+    @JsonIgnore
     public boolean isAppointment()
     {
         return RequestType.APPOINTMENT.equals(this.requestType);
     }
 
+    @JsonIgnore
     public boolean isAnalysis()
     {
         return RequestType.ANALYSIS.equals(this.requestType);

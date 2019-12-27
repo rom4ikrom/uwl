@@ -27,6 +27,11 @@ public class Surgeon extends Member {
         super(firstName, lastName, age, email, phone, personRole);
     }
 
+    public Surgeon(Surgeon surgeon)
+    {
+        super(surgeon);
+    }
+
     Surgeon() {}
 
 }

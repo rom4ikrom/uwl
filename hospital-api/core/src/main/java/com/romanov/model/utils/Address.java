@@ -32,7 +32,7 @@ public class Address {
     private String postcode;
     private String country;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     @JsonIgnore
     private Person person;

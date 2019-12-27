@@ -29,6 +29,11 @@ public class Practitioner extends Member {
         super(firstName, lastName, age, email, phone, personRole);
     }
 
+    public Practitioner(Practitioner practitioner)
+    {
+        super(practitioner);
+    }
+
     Practitioner() {}
 
     @Override

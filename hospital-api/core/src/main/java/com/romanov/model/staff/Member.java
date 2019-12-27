@@ -7,6 +7,7 @@ import com.romanov.model.utils.PersonRole;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -21,6 +22,13 @@ public abstract class Member extends Person {
     {
         super(firstName, lastName, age, email, phone);
         this.personRole = personRole;
+        this.setAddresses(new ArrayList<>());
+    }
+
+    Member(Member member)
+    {
+        super(member.getFirstName(), member.getLastName(), member.getAge(), member.getEmail(), member.getPhone());
+        this.personRole = member.getPersonRole();
     }
 
     Member()

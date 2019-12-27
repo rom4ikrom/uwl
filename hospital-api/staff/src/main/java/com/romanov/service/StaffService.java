@@ -30,7 +30,9 @@ public class StaffService {
 
     public Practitioner savePractitioner(Practitioner practitioner)
     {
-        return practitionerRepository.save(practitioner);
+        Practitioner persistPractitioner = new Practitioner(practitioner);
+        persistPractitioner.addAddresses(practitioner.getAddresses());
+        return practitionerRepository.save(persistPractitioner);
     }
 
     public Practitioner getPractitioner(long practitionerId)
@@ -40,12 +42,16 @@ public class StaffService {
 
     public Surgeon saveSurgeon(Surgeon surgeon)
     {
-        return surgeonRepository.save(surgeon);
+        Surgeon persistSurgeon = new Surgeon(surgeon);
+        persistSurgeon.addAddresses(surgeon.getAddresses());
+        return surgeonRepository.save(persistSurgeon);
     }
 
     public Consultant saveConsultant(Consultant consultant)
     {
-        return consultantRepository.save(consultant);
+        Consultant persistConsultant = new Consultant(consultant);
+        persistConsultant.addAddresses(consultant.getAddresses());
+        return consultantRepository.save(persistConsultant);
     }
 
     public List<Surgeon> getSurgeons()

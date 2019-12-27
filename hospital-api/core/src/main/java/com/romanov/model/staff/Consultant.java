@@ -24,6 +24,11 @@ public class Consultant extends Member {
         super(firstName, lastName, age, email, phone, personRole);
     }
 
+    public Consultant(Consultant consultant)
+    {
+        super(consultant);
+    }
+
     Consultant() {}
 
 }
