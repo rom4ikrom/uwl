@@ -27,4 +27,10 @@ public abstract class BaseHospitalService {
     private Request request;
 
     BaseHospitalService() {}
+
+    @Override
+    public String toString()
+    {
+        return "BaseHospitalService: {}";
+    }
 }

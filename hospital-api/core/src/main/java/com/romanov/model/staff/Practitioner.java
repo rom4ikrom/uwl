@@ -4,11 +4,13 @@ import com.romanov.model.request.Request;
 import com.romanov.model.record.MedicalRecord;
 import com.romanov.model.treatment.Treatment;
 import com.romanov.model.utils.PersonRole;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "practitioner")
 public class Practitioner extends Member {
@@ -27,8 +29,12 @@ public class Practitioner extends Member {
         super(firstName, lastName, age, email, phone, personRole);
     }
 
-    private Practitioner() {
-        super();
+    Practitioner() {}
+
+    @Override
+    public String toString()
+    {
+        return "Practitioner: {}";
     }
 
     public void addMedicalRecord(MedicalRecord medicalRecord)

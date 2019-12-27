@@ -35,10 +35,7 @@ public class Patient extends Client {
         this.setAddresses(new ArrayList<>());
     }
 
-    private Patient()
-    {
-        super();
-    }
+    Patient() {}
 
     public void addRequest(Request request)
     {

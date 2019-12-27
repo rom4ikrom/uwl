@@ -40,10 +40,16 @@ public class MedicalRecord implements Serializable {
     @JsonIgnore
     private MedicalHistory medicalHistory;
 
-    private MedicalRecord() {};
+    MedicalRecord() {};
 
     public MedicalRecord(MedicalRecordStatus status)
     {
         this.status = status;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "MedicalRecord: {}";
     }
 }

@@ -48,6 +48,12 @@ public class Address {
 
     Address() {}
 
+    @Override
+    public String toString()
+    {
+        return "Address: {}";
+    }
+
     public void setPostcode(String postcode)
     {
         this.postcode = postcode.replaceAll(" ", "").toUpperCase();

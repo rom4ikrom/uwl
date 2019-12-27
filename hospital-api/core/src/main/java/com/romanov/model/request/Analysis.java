@@ -7,5 +7,5 @@ import javax.persistence.Table;
 @Table(name = "analysis")
 public class Analysis extends BaseHospitalService {
 
-    private Analysis() { super(); }
+    Analysis() {}
 }

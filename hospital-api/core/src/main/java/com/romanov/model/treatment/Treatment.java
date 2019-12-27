@@ -9,10 +9,7 @@ import com.romanov.model.staff.Consultant;
 import com.romanov.model.staff.Practitioner;
 import com.romanov.model.staff.Surgeon;
 import com.romanov.util.Funcs;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -63,12 +60,23 @@ public class Treatment {
     @Column(name = "treatment_status")
     private TreatmentStatus status;
 
-    private Treatment() {}
+    Treatment() {}
 
     public Treatment(Date startDate, Date endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = TreatmentStatus.ACTIVE;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "MedicalHistory: {}";
+    }
+
+    public void setTotalPrice()
+    {
+        this.totalPrice = getTotalPrice();
     }
 
     public Double getTotalPrice()

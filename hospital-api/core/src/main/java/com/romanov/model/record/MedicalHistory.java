@@ -39,6 +39,12 @@ public class MedicalHistory implements Serializable {
 
     public MedicalHistory() {}
 
+    @Override
+    public String toString()
+    {
+        return "MedicalHistory: {}";
+    }
+
     public void addMedicalRecord(MedicalRecord medicalRecord)
     {
         this.medicalRecords.add(medicalRecord);

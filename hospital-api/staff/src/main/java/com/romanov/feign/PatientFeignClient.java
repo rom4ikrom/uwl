@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient("patient")
 public interface PatientFeignClient {
 
-    @PostMapping("/admin/history/{history-id}")
+    @PostMapping(value = "/admin/history/{history-id}", consumes = "application/json")
     MedicalRecord addMedicalRecord(@PathVariable("history-id") long historyId, @RequestBody MedicalRecord medicalRecord);
 
 }

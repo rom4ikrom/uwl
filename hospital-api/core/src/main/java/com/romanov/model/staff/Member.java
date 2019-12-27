@@ -28,4 +28,10 @@ public abstract class Member extends Person {
         super();
     }
 
+    @Override
+    public String toString()
+    {
+        return "Member: {}";
+    }
+
 }

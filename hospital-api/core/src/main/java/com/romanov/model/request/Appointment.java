@@ -7,6 +7,6 @@ import javax.persistence.Table;
 @Table(name = "appointment")
 public class Appointment extends BaseHospitalService {
 
-    private Appointment() {super();}
+    Appointment() {}
 
 }

@@ -5,15 +5,18 @@ import com.romanov.model.treatment.Treatment;
 import com.romanov.model.utils.Address;
 import com.romanov.model.utils.PersonRole;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @Entity
 @Table(name = "surgeon")
 public class Surgeon extends Member {
 
+    @Getter
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "current_treatment_id")
     @JsonIgnore
@@ -24,8 +27,6 @@ public class Surgeon extends Member {
         super(firstName, lastName, age, email, phone, personRole);
     }
 
-    private Surgeon() {
-        super();
-    }
+    Surgeon() {}
 
 }

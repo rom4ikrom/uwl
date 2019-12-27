@@ -96,6 +96,7 @@ public class ProcessingService {
         medicalHistory.addSpent(treatment.getTotalPrice());
         medicalHistory.incrementTreatmentCount();
 
+        //TODO review code - does not work (pass medical record only with history attached to it)
         return patientFeignClient.addMedicalRecord(medicalHistory.getId(), medicalRecord);
 
     }

@@ -24,8 +24,6 @@ public class Consultant extends Member {
         super(firstName, lastName, age, email, phone, personRole);
     }
 
-    private Consultant() {
-        super();
-    }
+    Consultant() {}
 
 }

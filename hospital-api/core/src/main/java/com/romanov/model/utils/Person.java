@@ -51,6 +51,12 @@ public abstract class Person implements Serializable {
 
     public Person() {}
 
+    @Override
+    public String toString()
+    {
+        return "Person: {}";
+    }
+
     public void addAddress(Address address)
     {
         this.addresses.add(address);

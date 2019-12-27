@@ -28,5 +28,11 @@ public class Medicine {
     @JsonIgnore
     private Treatment treatment;
 
-    private Medicine() {}
+    Medicine() {}
+
+    @Override
+    public String toString()
+    {
+        return "Medicine: {}";
+    }
 }

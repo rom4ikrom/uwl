@@ -40,7 +40,13 @@ public class Request {
     @JsonIgnore
     private BaseHospitalService baseHospitalService;
 
-    private Request() {};
+    @Override
+    public String toString()
+    {
+        return "Request: { }";
+    }
+
+    Request() {};
 
     public boolean isTreatment()
     {
