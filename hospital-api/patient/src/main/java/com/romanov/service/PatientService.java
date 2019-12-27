@@ -2,6 +2,7 @@ package com.romanov.service;
 
 import com.romanov.model.client.Patient;
 import com.romanov.model.request.Request;
+import com.romanov.model.request.RequestStatus;
 import com.romanov.repository.main.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class PatientService {
 
     public List<Request> createRequest(Patient patient, Request request)
     {
+        request.setRequestStatus(RequestStatus.PENDING);
         patient.addRequest(request);
         request.setDate(new Date());
 
