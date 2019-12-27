@@ -56,7 +56,7 @@ public class StaffController {
     @PostMapping("/practitioner")
     public Practitioner savePractitioner(@Valid @RequestBody Practitioner practitionerRequest)
     {
-        return staffService.savePractitioner(practitionerRequest);
+        return staffService.createPractitioner(practitionerRequest);
     }
 
     @PostMapping("/surgeon")

@@ -18,10 +18,6 @@ public class Patient extends Client {
     @JoinColumn(name = "history_id")
     private MedicalHistory medicalHistory = new MedicalHistory();
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "treatment_id")
-    private Treatment treatment;
-
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Request> requests = new ArrayList<>();
 

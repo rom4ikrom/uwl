@@ -11,14 +11,13 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "surgeon")
 public class Surgeon extends Member {
 
-    @Getter
-    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "current_treatment_id")
+    @JoinColumn(name = "treatment_id")
     @JsonIgnore
     private Treatment treatment;
 

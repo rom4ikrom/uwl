@@ -3,6 +3,7 @@ package com.romanov.controller;
 import com.romanov.config.exception.ExceptionCode;
 import com.romanov.config.exception.NotFoundException;
 import com.romanov.config.exception.UnprocessableException;
+import com.romanov.model.record.MedicalRecord;
 import com.romanov.model.request.BaseHospitalService;
 import com.romanov.model.request.Request;
 import com.romanov.model.request.RequestStatus;
@@ -45,8 +46,9 @@ public class ProcessingController {
         return processingService.getRequestByStatus(requestStatus);
     }
 
-    @PostMapping("/confirm/request/{request-id}")
-    public Request confirmRequest(@PathVariable("request-id") long requestId) throws NotFoundException, UnprocessableException
+    @PostMapping("/confirm/request")
+    public Request confirmRequest(@RequestParam("request_id") long requestId,
+                                  @RequestParam("practitioner_id") long practitionerId) throws NotFoundException, UnprocessableException
     {
         Request request = requestService.getRequest(requestId);
 
@@ -60,13 +62,20 @@ public class ProcessingController {
             throw new UnprocessableException(ExceptionCode.INVALID_REQUEST, "request was already approved!");
         }
 
-        return processingService.confirmRequest(request);
+        Practitioner practitioner = staffService.getPractitioner(practitionerId);
+
+        if(practitioner == null)
+        {
+            throw new NotFoundException(ExceptionCode.PRACTITIONER_NOT_FOUND, "practitioner not found!");
+        }
+
+        return processingService.confirmRequest(practitioner, request);
     }
 
     @PostMapping("create/treatment")
-    public Treatment createTreatment(@RequestParam("request_id") long requestId,
-                                     @RequestParam("practitioner_id") long practitionerId,
-                                     @RequestBody Treatment treatment) throws NotFoundException, UnprocessableException
+    public MedicalRecord createTreatment(@RequestParam("request_id") long requestId,
+                                         @RequestParam("practitioner_id") long practitionerId,
+                                         @RequestBody Treatment treatment) throws NotFoundException, UnprocessableException
     {
         Request request = requestService.getRequest(requestId);
 
@@ -87,7 +96,7 @@ public class ProcessingController {
             throw new NotFoundException(ExceptionCode.PRACTITIONER_NOT_FOUND, "practitioner not found!");
         }
 
-        return processingService.createTreatment(request, practitioner, treatment);
+        return processingService.createTreatmentMedicalRecord(request, practitioner, treatment);
     }
 
 

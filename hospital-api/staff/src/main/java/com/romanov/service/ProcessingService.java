@@ -45,21 +45,16 @@ public class ProcessingService {
         return requestRepository.findRequestsByStatus(requestStatus);
     }
 
-    public Request confirmRequest(Request request)
+    public Request confirmRequest(Practitioner practitioner, Request request)
     {
         request.setRequestStatus(RequestStatus.APPROVED);
+        practitioner.addRequest(request);
         return requestRepository.save(request);
     }
 
-    public Treatment createTreatment(Request request, Practitioner practitioner, Treatment treatmentRequest) throws UnprocessableException
+    public Treatment createTreatment(Treatment treatmentRequest) throws UnprocessableException
     {
-        Patient patient = request.getOwner();
         Treatment treatment = new Treatment(treatmentRequest.getStartDate(), treatmentRequest.getEndDate());
-
-        practitioner.addTreatment(treatment);
-
-        treatment.setTakenBy(patient);
-        patient.setTreatment(treatment);
 
         //TODO more logic to select appropriate surgeons and consultants
         List<Surgeon> surgeons = staffService.getSurgeons();
@@ -77,27 +72,28 @@ public class ProcessingService {
 
         treatment = treatmentService.saveTreatment(treatment);
 
-        createMedicalRecord(treatment);
-
         return treatment;
 
     }
 
-    public MedicalRecord createMedicalRecord(Treatment treatment)
+    public MedicalRecord createTreatmentMedicalRecord(Request request, Practitioner practitioner, Treatment treatmentRequest) throws UnprocessableException
     {
-        MedicalRecord medicalRecord = new MedicalRecord(MedicalRecordStatus.ACTIVE);
-        medicalRecord.setPractitioner(treatment.getMaker());
+        Patient patient = request.getOwner();
+
+        MedicalRecord medicalRecord = new MedicalRecord(request.getRequestType());
+
+        Treatment treatment = createTreatment(treatmentRequest);
+
         medicalRecord.setStartDate(treatment.getStartDate());
         medicalRecord.setEndDate(treatment.getEndDate());
+        medicalRecord.setServiceId(treatment.getId());
+        medicalRecord.setRequestId(request.getId());
+        medicalRecord.setTotalPrice(treatment.getTotalPrice());
 
-        Patient patient = treatment.getTakenBy();
+        practitioner.addMedicalRecord(medicalRecord);
+        staffService.savePractitioner(practitioner);
 
-        MedicalHistory medicalHistory = patient.getMedicalHistory();
-        medicalHistory.addSpent(treatment.getTotalPrice());
-        medicalHistory.incrementTreatmentCount();
-
-        //TODO review code - does not work (pass medical record only with history attached to it)
-        return patientFeignClient.addMedicalRecord(medicalHistory.getId(), medicalRecord);
+        return patientFeignClient.addMedicalRecord(patient.getId(), medicalRecord);
 
     }
 

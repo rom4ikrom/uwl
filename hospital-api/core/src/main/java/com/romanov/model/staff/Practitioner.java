@@ -18,9 +18,6 @@ public class Practitioner extends Member {
     @OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MedicalRecord> medicalRecords = new ArrayList<>();
 
-    @OneToMany(mappedBy = "maker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Treatment> treatments = new ArrayList<>();
-
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Request> requests = new ArrayList<>();
 
@@ -52,18 +49,6 @@ public class Practitioner extends Member {
     {
         this.medicalRecords.remove(medicalRecord);
         medicalRecord.setPractitioner(null);
-    }
-
-    public void addTreatment(Treatment treatment)
-    {
-        this.treatments.add(treatment);
-        treatment.setMaker(this);
-    }
-
-    public void removeTreatment(Treatment treatment)
-    {
-        this.treatments.remove(treatment);
-        treatment.setMaker(null);
     }
 
     public void addRequest(Request request)

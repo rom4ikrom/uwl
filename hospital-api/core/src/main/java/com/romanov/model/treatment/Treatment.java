@@ -40,22 +40,11 @@ public class Treatment {
 
     private String recommendations;
 
-    private Double totalPrice;
-
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
     @Temporal(TemporalType.DATE)
     private Date endDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "maker_id")
-    @JsonIgnore
-    private Practitioner maker;
-
-    @OneToOne(mappedBy = "treatment")
-    @JsonIgnore
-    private Patient takenBy;
 
     @Column(name = "treatment_status")
     private TreatmentStatus status;
@@ -72,11 +61,6 @@ public class Treatment {
     public String toString()
     {
         return "MedicalHistory: {}";
-    }
-
-    public void setTotalPrice()
-    {
-        this.totalPrice = getTotalPrice();
     }
 
     public Double getTotalPrice()

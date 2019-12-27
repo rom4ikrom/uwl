@@ -1,6 +1,8 @@
 package com.romanov.model.record;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.romanov.model.request.Request;
+import com.romanov.model.request.RequestType;
 import com.romanov.model.staff.Practitioner;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,6 +32,17 @@ public class MedicalRecord implements Serializable {
 
     private MedicalRecordStatus status;
 
+    private RequestType type;
+
+    @Column(name = "service_id")
+    private long serviceId;
+
+    @Column(name = "request_id")
+    private long requestId;
+
+    @Column(name = "total_price")
+    private double totalPrice;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "practitioner_id")
     @JsonIgnore
@@ -42,9 +55,10 @@ public class MedicalRecord implements Serializable {
 
     MedicalRecord() {};
 
-    public MedicalRecord(MedicalRecordStatus status)
+    public MedicalRecord(RequestType type)
     {
-        this.status = status;
+        this.type = type;
+        this.status = MedicalRecordStatus.ACTIVE;
     }
 
     @Override

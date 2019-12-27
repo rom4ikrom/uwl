@@ -28,11 +28,16 @@ public class StaffService {
         this.consultantRepository = consultantRepository;
     }
 
-    public Practitioner savePractitioner(Practitioner practitioner)
+    public Practitioner createPractitioner(Practitioner practitioner)
     {
         Practitioner persistPractitioner = new Practitioner(practitioner);
         persistPractitioner.addAddresses(practitioner.getAddresses());
         return practitionerRepository.save(persistPractitioner);
+    }
+
+    public Practitioner savePractitioner(Practitioner practitioner)
+    {
+        return practitionerRepository.save(practitioner);
     }
 
     public Practitioner getPractitioner(long practitionerId)
