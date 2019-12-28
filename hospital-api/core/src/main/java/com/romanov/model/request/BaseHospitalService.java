@@ -22,7 +22,7 @@ public abstract class BaseHospitalService {
 
     private String details;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "request_id")
     private Request request;
 

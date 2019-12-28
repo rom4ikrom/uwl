@@ -3,6 +3,8 @@ package com.romanov.model.record;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.romanov.model.client.Patient;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;

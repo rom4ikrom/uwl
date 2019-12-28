@@ -2,14 +2,10 @@ package com.romanov.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -18,22 +14,35 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
+import java.util.Objects;
 
+@Profile("test")
 @Configuration
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "mainEntityManagerFactory",
-        transactionManagerRef = "mainTransactionManager",
+        entityManagerFactoryRef = "testEntityManagerFactory",
+        transactionManagerRef = "testTransactionManager",
         basePackages = {"com.romanov.repository.main"}
 )
 @EnableTransactionManagement
-public class MainDBConfig {
+@PropertySource("classpath:application-test.properties")
+public class TestDBConfig {
 
     @Autowired
     private Environment env;
 
     @Bean
-    @Primary
-    public LocalContainerEntityManagerFactoryBean mainEntityManagerFactory() {
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("db.driver-class-name.test")));
+        dataSource.setUrl(env.getProperty("db.url.test"));
+        dataSource.setUsername(env.getProperty("db.user.test"));
+        dataSource.setPassword(env.getProperty("db.pass.test"));
+
+        return dataSource;
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean testEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
         em.setPackagesToScan("com.romanov.model");
@@ -41,22 +50,15 @@ public class MainDBConfig {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         HashMap<String, Object> properties = new HashMap<>();
-        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl"));
-        properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto.test"));
+        properties.put("hibernate.dialect", env.getProperty("hibernate.dialect.test"));
         em.setJpaPropertyMap(properties);
 
         return em;
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.main")
-    public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
-    }
-
-    @Bean
-    public PlatformTransactionManager mainTransactionManager(@Qualifier("mainEntityManagerFactory") final LocalContainerEntityManagerFactoryBean factoryBean)
+    public PlatformTransactionManager testTransactionManager(@Qualifier("testEntityManagerFactory") final LocalContainerEntityManagerFactoryBean factoryBean)
     {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(factoryBean.getObject());

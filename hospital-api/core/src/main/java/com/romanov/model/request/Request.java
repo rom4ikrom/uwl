@@ -46,6 +46,11 @@ public class Request {
         return "Request: { }";
     }
 
+    public Request(RequestType requestType)
+    {
+        this.requestType = requestType;
+    }
+
     Request() {};
 
     @JsonIgnore

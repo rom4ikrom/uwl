@@ -4,6 +4,8 @@ import com.romanov.model.request.Request;
 import com.romanov.model.record.MedicalHistory;
 import com.romanov.model.treatment.Treatment;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,11 +16,11 @@ import java.util.List;
 @Table(name = "patient")
 public class Patient extends Client {
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "history_id")
     private MedicalHistory medicalHistory = new MedicalHistory();
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Request> requests = new ArrayList<>();
 
     public Patient(String firstName, String lastName, int age,  String email, String phone) {

@@ -40,11 +40,14 @@ allprojects {
 		compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.0.RELEASE'
 		compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '2.2.0.RELEASE'
 
-
 		compile 'mysql:mysql-connector-java'
 
 		compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
 		annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+		compile group: 'com.h2database', name: 'h2', version: '1.4.200'
+
+		compile group: 'org.springframework', name: 'spring-test', version: '5.2.2.RELEASE'
 
 		testImplementation('org.springframework.boot:spring-boot-starter-test') {
 			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

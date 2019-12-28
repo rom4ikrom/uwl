@@ -1,17 +1,15 @@
 package com.romanov.model.staff;
 
-import com.romanov.model.record.MedicalRecord;
-import com.romanov.model.utils.Address;
 import com.romanov.model.utils.Person;
 import com.romanov.model.utils.PersonRole;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.util.ArrayList;
-import java.util.List;
 
 @Data
-@MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Member extends Person {
 

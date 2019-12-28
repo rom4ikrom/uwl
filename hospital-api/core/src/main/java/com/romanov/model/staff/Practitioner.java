@@ -1,10 +1,11 @@
 package com.romanov.model.staff;
 
-import com.romanov.model.request.Request;
 import com.romanov.model.record.MedicalRecord;
-import com.romanov.model.treatment.Treatment;
+import com.romanov.model.request.Request;
 import com.romanov.model.utils.PersonRole;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,10 +16,10 @@ import java.util.List;
 @Table(name = "practitioner")
 public class Practitioner extends Member {
 
-    @OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL)
     private List<MedicalRecord> medicalRecords = new ArrayList<>();
 
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Request> requests = new ArrayList<>();
 
     public Practitioner(String firstName, String lastName, int age, String email, String phone, PersonRole personRole)

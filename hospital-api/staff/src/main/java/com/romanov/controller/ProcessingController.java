@@ -4,16 +4,13 @@ import com.romanov.config.exception.ExceptionCode;
 import com.romanov.config.exception.NotFoundException;
 import com.romanov.config.exception.UnprocessableException;
 import com.romanov.model.record.MedicalRecord;
-import com.romanov.model.request.BaseHospitalService;
 import com.romanov.model.request.Request;
 import com.romanov.model.request.RequestStatus;
 import com.romanov.model.staff.Practitioner;
 import com.romanov.model.treatment.Treatment;
-import com.romanov.service.ProcessingService;
 import com.romanov.service.RequestService;
 import com.romanov.service.StaffService;
 import com.romanov.service.TreatmentService;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,18 +20,16 @@ import java.util.List;
 @RequestMapping("/admin")
 public class ProcessingController {
 
-    private ProcessingService processingService;
     private RequestService requestService;
     private TreatmentService treatmentService;
     private StaffService staffService;
 
     @Autowired
-    public ProcessingController(ProcessingService processingService,
+    public ProcessingController(
                                 RequestService requestService,
                                 TreatmentService treatmentService,
                                 StaffService staffService)
     {
-        this.processingService = processingService;
         this.requestService = requestService;
         this.treatmentService = treatmentService;
         this.staffService = staffService;
@@ -43,7 +38,7 @@ public class ProcessingController {
     @GetMapping("/view/requests")
     public List<Request> getRequest(@RequestParam("request_status") RequestStatus requestStatus)
     {
-        return processingService.getRequestByStatus(requestStatus);
+        return requestService.getRequestByStatus(requestStatus);
     }
 
     @PostMapping("/confirm/request")
@@ -69,11 +64,11 @@ public class ProcessingController {
             throw new NotFoundException(ExceptionCode.PRACTITIONER_NOT_FOUND, "practitioner not found!");
         }
 
-        return processingService.confirmRequest(practitioner, request);
+        return requestService.confirmRequest(practitioner, request);
     }
 
     @PostMapping("create/treatment")
-    public MedicalRecord createTreatment(@RequestParam("request_id") long requestId,
+    public Treatment createTreatment(@RequestParam("request_id") long requestId,
                                          @RequestParam("practitioner_id") long practitionerId,
                                          @RequestBody Treatment treatment) throws NotFoundException, UnprocessableException
     {
@@ -96,7 +91,7 @@ public class ProcessingController {
             throw new NotFoundException(ExceptionCode.PRACTITIONER_NOT_FOUND, "practitioner not found!");
         }
 
-        return processingService.createTreatmentMedicalRecord(request, practitioner, treatment);
+        return treatmentService.createTreatmentMedicalRecord(request, practitioner, treatment);
     }
 
 

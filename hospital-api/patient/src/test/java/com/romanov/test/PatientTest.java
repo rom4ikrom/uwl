@@ -1,7 +1,12 @@
 package com.romanov.test;
 
+import com.romanov.config.TestDBConfig;
 import com.romanov.controller.AdminPatientController;
+import com.romanov.controller.PatientController;
 import com.romanov.model.client.Patient;
+import com.romanov.model.request.Request;
+import com.romanov.model.request.RequestStatus;
+import com.romanov.model.request.RequestType;
 import com.romanov.model.utils.Address;
 import com.romanov.repository.main.PatientRepository;
 import com.romanov.service.AdminPatientService;
@@ -14,7 +19,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,6 +34,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.validation.Validator;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -34,11 +43,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
+@ActiveProfiles("test")
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@Transactional
 @WebAppConfiguration
 public class PatientTest {
+
+    @Autowired
+    private PatientController patientController;
+
+    @Autowired
+    private AdminPatientService adminPatientServiceReal;
 
     @Autowired
     private PatientRepository patientRepository;
@@ -58,9 +73,6 @@ public class PatientTest {
     private MockMvc mockmvc;
 
     private Validator validator;
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     private Patient patientBadParam;
     private Patient patientValid;
@@ -97,15 +109,13 @@ public class PatientTest {
     @Test
     public void uniquePatientEmail()
     {
-        Assertions.assertThrows(PersistenceException.class, () ->
+        Assertions.assertThrows(DataIntegrityViolationException.class, () ->
         {
             Patient patient = new Patient("", "", 16, "email", "");
             Patient patient2 = new Patient("1", "3", 16, "email", "3");
 
             patientRepository.save(patient);
             patientRepository.save(patient2);
-
-            entityManager.flush();
         });
     }
 
@@ -147,6 +157,18 @@ public class PatientTest {
 
         verify(mockPatientRepository, times(0)).save(any());
         Assertions.assertTrue(errorMessage.contains("INVALID_POSTCODE"));
+    }
+
+    @Test
+    public void createRequest() throws Exception
+    {
+        Patient patient = adminPatientServiceReal.savePatient(patientValid);
+
+        Request request = new Request(RequestType.ANALYSIS);
+        List<Request> savedRequests = patientController.createRequest(patient.getId(), request);
+
+        Assertions.assertEquals(savedRequests.get(savedRequests.size() - 1).getRequestStatus(), RequestStatus.PENDING);
+        Assertions.assertFalse(patientRepository.findByEmail(patient.getEmail()).getRequests().isEmpty());
     }
 
 

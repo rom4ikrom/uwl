@@ -59,6 +59,12 @@ public class StaffController {
         return staffService.createPractitioner(practitionerRequest);
     }
 
+    @GetMapping("/practitioner/{practitioner-id}")
+    public Practitioner getPractitioner(@PathVariable("practitioner-id") long practitionerId)
+    {
+        return staffService.getPractitioner(practitionerId);
+    }
+
     @PostMapping("/surgeon")
     public Surgeon saveSurgeon(@Valid @RequestBody Surgeon surgeon)
     {

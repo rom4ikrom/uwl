@@ -21,14 +21,5 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
-    public List<Request> createRequest(Patient patient, Request request)
-    {
-        request.setRequestStatus(RequestStatus.PENDING);
-        patient.addRequest(request);
-        request.setDate(new Date());
-
-        return patientRepository.save(patient).getRequests();
-    }
-
 
 }

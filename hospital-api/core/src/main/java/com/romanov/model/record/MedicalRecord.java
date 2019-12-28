@@ -43,12 +43,12 @@ public class MedicalRecord implements Serializable {
     @Column(name = "total_price")
     private double totalPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "practitioner_id")
     @JsonIgnore
     private Practitioner practitioner;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "history_id")
     @JsonIgnore
     private MedicalHistory medicalHistory;

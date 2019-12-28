@@ -16,6 +16,7 @@ apply plugin: 'java'
 dependencies {
     compile project (':core')
 
+    testCompile project(':core')
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
