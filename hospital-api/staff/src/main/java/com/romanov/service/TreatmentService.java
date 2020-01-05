@@ -43,30 +43,6 @@ public class TreatmentService {
         return treatmentRepository.save(treatment);
     }
 
-    public Treatment createTreatment(Treatment treatmentRequest) throws UnprocessableException
-    {
-        Treatment treatment = new Treatment(treatmentRequest.getStartDate(), treatmentRequest.getEndDate());
-
-        //TODO more logic to select appropriate surgeons and consultants
-        List<Surgeon> surgeons = staffService.getSurgeons();
-        List<Consultant> consultants = staffService.getConsultants();
-
-        Surgeon surgeon = surgeons.get(0);
-        treatment.addSurgeon(surgeon);
-
-        Consultant consultant = consultants.get(0);
-        treatment.addConsultant(consultant);
-
-        List<Medicine> medicines = treatmentRequest.getMedicines();
-
-        treatment.addMedicines(medicines);
-
-        treatment = saveTreatment(treatment);
-
-        return treatment;
-
-    }
-
     public Treatment createTreatmentMedicalRecord(Request request, Practitioner practitioner, Treatment treatmentRequest) throws UnprocessableException
     {
         Patient patient = request.getOwner();
@@ -91,7 +67,29 @@ public class TreatmentService {
         historyService.addMedicalRecord(patient.getMedicalHistory(), medicalRecord);
 
         return treatment;
+    }
 
+    private Treatment createTreatment(Treatment treatmentRequest) throws UnprocessableException
+    {
+        Treatment treatment = new Treatment(treatmentRequest.getStartDate(), treatmentRequest.getEndDate());
+
+        //TODO more logic to select appropriate surgeons and consultants
+        List<Surgeon> surgeons = staffService.getSurgeons();
+        List<Consultant> consultants = staffService.getConsultants();
+
+        Surgeon surgeon = surgeons.get(0);
+        treatment.addSurgeon(surgeon);
+
+        Consultant consultant = consultants.get(0);
+        treatment.addConsultant(consultant);
+
+        List<Medicine> medicines = treatmentRequest.getMedicines();
+
+        treatment.addMedicines(medicines);
+
+        treatment = saveTreatment(treatment);
+
+        return treatment;
     }
 
 

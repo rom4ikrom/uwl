@@ -79,9 +79,9 @@ public class ProcessingController {
             throw new NotFoundException(ExceptionCode.REQUEST_NOT_FOUND, "request not found!");
         }
 
-        if(request.getRequestStatus().equals(RequestStatus.PENDING))
+        if(!request.getRequestStatus().equals(RequestStatus.APPROVED))
         {
-            throw new UnprocessableException(ExceptionCode.INVALID_REQUEST, "request should be approved first!");
+            throw new UnprocessableException(ExceptionCode.INVALID_REQUEST, "invalid request status!");
         }
 
         Practitioner practitioner = staffService.getPractitioner(practitionerId);
