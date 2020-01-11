@@ -98,6 +98,7 @@ public class TreatmentCreationTest {
 
         Treatment savedTreatment = processingController.createTreatment(confirmedRequest.getId(), practitioner.getId(), treatment);
 
+        Assertions.assertNotNull(savedTreatment.getId());
         Assertions.assertFalse(practitionerRepository.findByEmail("practitioner@gmail.com").getRequests().isEmpty());
         Assertions.assertFalse(savedTreatment.getConsultants().isEmpty());
         Assertions.assertFalse(savedTreatment.getSurgeons().isEmpty());

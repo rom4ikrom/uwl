@@ -117,7 +117,7 @@ public class Treatment {
 
     public void addSurgeon(Surgeon surgeon) throws UnprocessableException
     {
-        if(this.surgeons.size() == 5)
+        if(this.surgeons.size() == 3)
         {
             throw new UnprocessableException(ExceptionCode.INVALID_SURGEON_NUMBER, "Number of surgeons can not exceed 5!");
         }
@@ -147,7 +147,7 @@ public class Treatment {
 
     public void addConsultant(Consultant consultant) throws UnprocessableException
     {
-        if(this.consultants.size() == 2)
+        if(this.consultants.size() == 1)
         {
             throw new UnprocessableException(ExceptionCode.INVALID_CONSULTANT_NUMBER, "Number of consultants can not exceed 2!");
         }

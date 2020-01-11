@@ -33,22 +33,16 @@ public class TreatmentTest {
         Surgeon surgeon1 = new Surgeon("Surgeon", "1", 35, "surgeon1@gmail.com", "12345678900", PersonRole.SURGEON);
         Surgeon surgeon2 = new Surgeon("Surgeon", "2", 30, "surgeon2@gmail.com", "12345678901", PersonRole.SURGEON);
         Surgeon surgeon3 = new Surgeon("Surgeon", "3", 35, "surgeon3@gmail.com", "12345678902", PersonRole.SURGEON);
-        Surgeon surgeon4 = new Surgeon("Surgeon", "4", 30, "surgeon4@gmail.com", "12345678903", PersonRole.SURGEON);
-        Surgeon surgeon5 = new Surgeon("Surgeon", "5", 35, "surgeon5@gmail.com", "12345678904", PersonRole.SURGEON);
 
         List<Surgeon> surgeonList = new ArrayList<>();
         surgeonList.add(surgeon1);
         surgeonList.add(surgeon2);
         surgeonList.add(surgeon3);
-        surgeonList.add(surgeon4);
-        surgeonList.add(surgeon5);
 
         Consultant consultant1 = new Consultant("Consultant", "1", 35, "consultant1@gmail.com", "12345678905", PersonRole.CONSULTANT);
-        Consultant consultant2 = new Consultant("Consultant", "2", 30, "consultant2@gmail.com", "12345678906", PersonRole.CONSULTANT);
 
         List<Consultant> consultantList = new ArrayList<>();
         consultantList.add(consultant1);
-        consultantList.add(consultant2);
 
         treatment = new Treatment(new Date(1575158400),new Date(1575244800));
         treatment.addSurgeons(surgeonList);
